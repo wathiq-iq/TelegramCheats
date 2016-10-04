@@ -7,7 +7,7 @@ function load() {
     if (url.match(/tbot\.xyz/)) {
         var param = url.replace(/^.*#/g, '').replace(/\?.*$/g, '');
         var data = "data=" + param + "&score=" + score;
-        post("https://tbot.xyz/api/setScore", data, function(data) { writeres("OK"); }, function(data) { writeres("Error"); });
+        post("https://tbot.xyz/api/setScore", data, function(data) { writeres("OK"); }, function(data) { writeres("Error"); }, true);
         return;
     }
     if (url.match(/www\.gameeapp\.com/)) {
@@ -21,7 +21,10 @@ function load() {
     }
     writeres("I cannot use cheats on this game. You can add support to new games by submitting a pull request to <a href='https://github.com/danog/telegramcheats' target='_blank'>the TelegramCheats repo</a>");
 }
-function post(url, data, cb, failCb) {
+function post(url, data, cb, failCb, proxy = false) {
+    if (proxy) {
+        url = "https://proxy.daniil.it/?url=" + encodeURIComponent(url);
+    }
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -35,6 +38,5 @@ function post(url, data, cb, failCb) {
     xhr.send(data);
 }
 function writeres(cos) {
-    $("#res")
-        .html(cos);
+    $("#res").html(cos);
 }

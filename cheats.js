@@ -19,7 +19,7 @@ function load() {
         post("https://bots.gameeapp.com/set-web-score-qkfnsog26w7173c9pk7whg0iau7zwhdkfd7ft3tn", data, function(data) { writeres("OK"); }, function(data) { writeres("Error"); });
         return; 
     }
-    writeres("I cannot use cheats on this game. You can add support to new games by submitting a pull request to <a href='https://github.com/danog/telegramcheats' target='_blank'>the TelegramCheats repo</a>");
+    writeres("I cannot use cheats on this game. You can add support to new games by submitting a pull request to <a href='https://github.com/danog/telegramcheats' class='grey-text text-lighten-3' target='_blank'>the TelegramCheats repo</a>");
 }
 function post(url, data, cb, failCb, proxy = false) {
     if (proxy) {
